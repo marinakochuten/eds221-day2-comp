@@ -30,3 +30,29 @@ x
 df <- data.frame(a = c(1, 10, NA))
 df$a[df$a <5] <- 0
 df
+
+mtcars
+mtcars[mtcars$gear == 5, ] # find all the cars with 5 gears
+mtcars[mtcars$gear == 5 & mtcars$cyl ==4, ] # subset cars with 5 gears and 4 cylinders
+
+subset(mtcars, gear == 5) # another way to find all the cars with 5 gears
+
+#subset() is a shorthand function for subsetting data frames
+
+subset(mtcars, gear ==5 & cyl == 4)
+
+library(tidyverse)
+ggplot(data = subset(mtcars, gear == 5 & cyl == 4),
+       aes(x = mpg, y = disp)) +
+  geom_point()   # can imbed the subset straight into ggplot
+
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df
+df$z <- NULL   # totally get rid of column z
+df
+
+df[c("x", "y")]   # subset based on column names, returns only columns x and y
+df[setdiff(names(df), "z")]  #this also subsets the data frame to just x and y. setdiff() says keep everything, execpt for this. so, keep all columns (names(df)) exept for z.
+
+
+
